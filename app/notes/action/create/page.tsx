@@ -1,4 +1,3 @@
-"use client";
 import NoteForm from "@/components/NoteForm/NoteForm";
 import css from "../../../../app/page.module.css";
 import { Metadata } from "next";
