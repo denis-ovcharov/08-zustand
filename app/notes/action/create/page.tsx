@@ -3,12 +3,12 @@ import css from "../../../../app/page.module.css";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "NoteHub",
-  description: "NoteHub. Created by Denys Ovcharov",
+  title: "Create New Note",
+  description: "Create your note in NoteHub",
   openGraph: {
-    title: "NoteHub",
-    description: "Created by Denys Ovcharov",
-    url: "/",
+    title: "Create New Note",
+    description: "Create your note in NoteHub",
+    url: "https://08-zustand-a6039qs4i-denys-projects-ef9bd61b.vercel.app/notes/action/create",
     images: [
       {
         url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
