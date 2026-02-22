@@ -1,6 +1,5 @@
 import axios from "axios";
 import type { Note, NoteTag } from "../types/note";
-import toast from "react-hot-toast";
 
 const NOTEHUB_TOKEN =
   process.env.NOTEHUB_TOKEN ?? process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
@@ -12,8 +11,8 @@ interface FetchNotesResponse {
 
 export async function fetchNotes(
   query: string,
-  page: number = 1,
-  perPage: number = 9,
+  page: number,
+  perPage: number,
   tag?: NoteTag,
 ) {
   const params: Record<string, string | number> = {
@@ -38,7 +37,7 @@ export async function fetchNotes(
   const { data } = await axios.request<FetchNotesResponse>(options);
 
   if (data.notes.length === 0) {
-    toast.error("No matches for your query");
+    alert("No matches for your query");
   }
 
   return {

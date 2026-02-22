@@ -3,13 +3,11 @@ import NoteList from "../../../../components/NoteList/NoteList";
 import Pagination from "../../../../components/Pagination/Pagination";
 import css from "./page.module.css";
 import { useState } from "react";
-import Modal from "../../../../components/Modal/Modal";
-import { Toaster } from "react-hot-toast";
 import { useDebouncedCallback } from "use-debounce";
 import SearchBox from "../../../../components/SearchBox/SearchBox";
 import { useNotes } from "@/hooks/useNotes";
-import EditNoteForm from "@/components/EditNoteForm/EditNoteFormForm";
-import { Note, NoteTag } from "@/types/note";
+
+import { NoteTag } from "@/types/note";
 import Link from "next/link";
 
 type Props = {
@@ -20,7 +18,9 @@ function NotesClient({ tag }: Props) {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
 
-  const { data, isSuccess } = useNotes(query, page, 9, tag);
+  const perPage = 12;
+
+  const { data, isSuccess } = useNotes(query, page, perPage, tag);
 
   const updateQuery = useDebouncedCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,7 +51,6 @@ function NotesClient({ tag }: Props) {
         </header>
         {notes.length > 0 && isSuccess && <NoteList notes={notes} />}
       </div>
-      <Toaster position="top-right" />
     </>
   );
 }

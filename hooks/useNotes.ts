@@ -5,7 +5,7 @@ import type { NoteTag } from "@/types/note";
 export function useNotes(
   query: string,
   page: number,
-  perPage: number = 9,
+  perPage: number,
   tag: NoteTag,
 ) {
   return useQuery({

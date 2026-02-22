@@ -2,7 +2,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import css from "./NoteForm.module.css";
 import { createNote } from "../../lib/api";
-import toast from "react-hot-toast";
+
 import { useRouter } from "next/navigation";
 import { NoteData } from "@/lib/api";
 import { useNoteDraftStore } from "@/lib/store/noteStore";
@@ -34,11 +34,7 @@ export default function NoteForm() {
 
   const handleSubmit = (formData: FormData) => {
     const values = Object.fromEntries(formData) as NoteData;
-    mutate(values, {
-      onSuccess() {
-        toast.success("Note created successfully!");
-      },
-    });
+    mutate(values);
   };
 
   const handleCancel = () => {
