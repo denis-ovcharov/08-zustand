@@ -12,6 +12,5 @@ export function useNotes(
     queryKey: ["notes", query, page, perPage, tag],
     queryFn: () => fetchNotes(query, page, perPage, tag),
     placeholderData: keepPreviousData,
-    refetchOnMount: false,
   });
 }

@@ -2,7 +2,8 @@ import axios from "axios";
 import type { Note, NoteTag } from "../types/note";
 import toast from "react-hot-toast";
 
-const NOTEHUB_TOKEN = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
+const NOTEHUB_TOKEN =
+  process.env.NOTEHUB_TOKEN ?? process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 const URL = "https://notehub-public.goit.study/api/notes";
 interface FetchNotesResponse {
   notes: Note[];
@@ -54,11 +55,7 @@ export async function deleteNote(id: string) {
   return data;
 }
 
-interface NoteData {
-  title: string;
-  content: string;
-  tag: NoteTag;
-}
+export type NoteData = Pick<Note, "title" | "content" | "tag">;
 
 export async function createNote(noteData: NoteData) {
   const { data } = await axios.post<Note>(`${URL}`, noteData, {

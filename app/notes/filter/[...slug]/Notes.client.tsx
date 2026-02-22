@@ -4,13 +4,13 @@ import Pagination from "../../../../components/Pagination/Pagination";
 import css from "./page.module.css";
 import { useState } from "react";
 import Modal from "../../../../components/Modal/Modal";
-import NoteForm from "../../../../components/NoteForm/NoteForm";
 import { Toaster } from "react-hot-toast";
 import { useDebouncedCallback } from "use-debounce";
 import SearchBox from "../../../../components/SearchBox/SearchBox";
 import { useNotes } from "@/hooks/useNotes";
 import EditNoteForm from "@/components/EditNoteForm/EditNoteFormForm";
 import { Note, NoteTag } from "@/types/note";
+import Link from "next/link";
 
 type Props = {
   tag: NoteTag;
@@ -35,9 +35,9 @@ function NotesClient({ tag }: Props) {
   const notes = data?.notes || [];
   const totalPages = data?.totalPages ?? 1;
 
-  const handleOpenCreateModal = () => {
-    setIsModalOpen("create");
-  };
+  // const handleOpenCreateModal = () => {
+  //   setIsModalOpen("create");
+  // };
 
   const handleOpenEditModal = (note: Note) => {
     setIsModalOpen("edit");
@@ -60,19 +60,19 @@ function NotesClient({ tag }: Props) {
               onPageChange={setPage}
             />
           )}
-          <button className={css.button} onClick={handleOpenCreateModal}>
+          <Link href={"/notes/action/create"} className={css.button}>
             Create note +
-          </button>
+          </Link>
         </header>
         {notes.length > 0 && isSuccess && (
           <NoteList notes={notes} onEdit={handleOpenEditModal} />
         )}
       </div>
-      {isModalOpen === "create" && (
+      {/* {isModalOpen === "create" && (
         <Modal onClose={handleCloseModal}>
           <NoteForm onClose={handleCloseModal} />
         </Modal>
-      )}
+      )} */}
       {isModalOpen === "edit" && selectedNote && (
         <Modal onClose={handleCloseModal}>
           <EditNoteForm note={selectedNote} onClose={handleCloseModal} />
