@@ -19,9 +19,9 @@ type Props = {
 function NotesClient({ tag }: Props) {
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
-  type ModalType = "create" | "edit" | null;
-  const [isModalOpen, setIsModalOpen] = useState<ModalType>(null);
-  const [selectedNote, setSelectedNote] = useState<Note | null>(null);
+  // type ModalType = "create" | "edit" | null;
+  // const [isModalOpen, setIsModalOpen] = useState<ModalType>(null);
+  // const [selectedNote, setSelectedNote] = useState<Note | null>(null);
   const { data, isSuccess } = useNotes(query, page, 9, tag);
 
   const updateQuery = useDebouncedCallback(
@@ -39,14 +39,14 @@ function NotesClient({ tag }: Props) {
   //   setIsModalOpen("create");
   // };
 
-  const handleOpenEditModal = (note: Note) => {
-    setIsModalOpen("edit");
-    setSelectedNote(note);
-  };
+  // const handleOpenEditModal = (note: Note) => {
+  //   setIsModalOpen("edit");
+  //   setSelectedNote(note);
+  // };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(null);
-  };
+  // const handleCloseModal = () => {
+  //   setIsModalOpen(null);
+  // };
 
   return (
     <>
@@ -65,7 +65,7 @@ function NotesClient({ tag }: Props) {
           </Link>
         </header>
         {notes.length > 0 && isSuccess && (
-          <NoteList notes={notes} onEdit={handleOpenEditModal} />
+          <NoteList notes={notes} onEdit={() => {}} />
         )}
       </div>
       {/* {isModalOpen === "create" && (
@@ -73,11 +73,11 @@ function NotesClient({ tag }: Props) {
           <NoteForm onClose={handleCloseModal} />
         </Modal>
       )} */}
-      {isModalOpen === "edit" && selectedNote && (
+      {/* {isModalOpen === "edit" && selectedNote && (
         <Modal onClose={handleCloseModal}>
           <EditNoteForm note={selectedNote} onClose={handleCloseModal} />
         </Modal>
-      )}
+      )} */}
       <Toaster position="top-right" />
     </>
   );
